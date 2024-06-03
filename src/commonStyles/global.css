@@ -1,0 +1,30 @@
+html,
+body {
+  height: 100%;
+}
+
+body {
+  line-height: 1.2;
+  font-size: 14px;
+  font-family: "Montserrat",
+    sans-serif;
+  font-weight: 400;
+  letter-spacing: normal;
+  background-color: white;
+  color: gray;
+}
+
+.title {
+  margin-bottom: 30px;
+  font-weight: 900;
+  font-size: 36px;
+  text-align: center;
+  color: black;
+}
+
+.container {
+  max-width: 1245px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 50px 15px;
+}
