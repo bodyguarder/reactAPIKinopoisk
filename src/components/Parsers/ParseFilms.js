@@ -1,4 +1,4 @@
-async function Parser() {
+async function ParseFilms() {
   const data = [];
   const parser = async (data, page) => {
     const params = new URLSearchParams({
@@ -29,4 +29,4 @@ async function Parser() {
   localStorage.setItem('movies', json);
 }
 
-export default Parser;
+export default ParseFilms;

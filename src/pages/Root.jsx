@@ -1,17 +1,17 @@
 import React, { useState } from "react";
-import Pagination from "./components/Pagination/Pagination";
-import MoviesList from "./components/MovieList/MoviesList";
-import Filters from "./components/Filter/Filters";
-import Parser from "./components/Parser";
+import Pagination from "../components/Pagination/Pagination";
+import MoviesList from "../components/MovieList/MoviesList";
+import Filters from "../components/Filter/Filters";
+import ParseFilms from "../components/Parsers/ParseFilms";
 
 if (!localStorage.getItem('movies')) {
-  await Parser();
+  await ParseFilms();
 }
 
 let allMovies = JSON.parse(localStorage.getItem('movies'));
 console.log(allMovies);
 
-function App() {
+function Root() {
   const [movies, setMovies] = useState(allMovies);
   const [currentPage, setCurrentPage] = useState(1);
   const [moviesPerPage] = useState(10);
@@ -28,4 +28,4 @@ function App() {
   </div>
 }
 
-export default App;
+export default Root;
