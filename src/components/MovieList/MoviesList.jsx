@@ -2,6 +2,8 @@ import React from "react";
 import { nanoid } from "nanoid";
 import styles from "./MovieList.module.css";
 import { useNavigate } from "react-router-dom";
+import ParseSources from "../Parsers/ParseSources";
+import ParseStaff from "../Parsers/ParseStaff";
 
 function doShort(str, length) {
   return str.slice(0, length) + '...';
@@ -10,11 +12,11 @@ function doShort(str, length) {
 function MoviesList({ currentMoviesList }) {
   const navigate = useNavigate();
 
-  function movieHandleClick(movie) {
-    navigate(`/movies/${movie.kinopoiskId}`);
-    localStorage.setItem('currentMovie', JSON.stringify(movie));
+  async function movieHandleClick(movie) {
+    await ParseSources(movie.kinopoiskId);
+    await ParseStaff(movie.kinopoiskId);
+    navigate(`/movies/${movie.kinopoiskId}`, {state: {'currentMovie': {movie}}});
   }
-
 
   let result = currentMoviesList.map(function (movie) {
     let id = nanoid();
@@ -29,7 +31,7 @@ function MoviesList({ currentMoviesList }) {
           <span className={styles.rating}>{movie.ratingKinopoisk}</span>
         </div>
         <p>{shortDescription}</p>
-        <a className={styles.link} href={linkToMovie} target="_blank" rel="noreferrer">смотреть фильм</a>
+        <a className={styles.link} href={linkToMovie} onClick={e => e.stopPropagation()} target="_blank" rel="noreferrer">смотреть фильм</a>
       </div>
     </li>
   });
